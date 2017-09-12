@@ -1,0 +1,22 @@
+<section>
+  <div class="page-header">
+    <h1>Associations</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="association in vm.associations"
+       ui-sref="associations.view({ associationId: association._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="association.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="association.user" ng-bind="association.user.displayName"></span>
+        <span ng-if="!association.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="association.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.associations.$resolved && !vm.associations.length">
+    No Associations yet, why don't you <a ui-sref="associations.create">create one</a>?
+  </div>
+</section>
